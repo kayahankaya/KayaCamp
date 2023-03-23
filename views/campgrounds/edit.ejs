@@ -48,32 +48,15 @@
                         Looks good!
                     </div>
                 </div>
-                <div class="mb-3">
-                    <button class="btn btn-success">Update Campground</button>
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <button class="btn btn-success w-100">Update Campground</button>
+                    </div>
+                    <div class="col-6">
+                        <button onclick="location.href='/campgrounds/<%=campground._id%>'" class="btn btn-secondary w-100">Cancel</button>
+                    </div>
                 </div>
             </form>
-            <a href="/campgrounds/">All Campgrounds</a>
+
         </div>
     </div>
-
-    <script>
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
-        (() => {
-            'use strict'
-
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            const forms = document.querySelectorAll('.needs-validation')
-
-            // Loop over them and prevent submission
-            Array.from(forms).forEach(form => {
-                form.addEventListener('submit', event => {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
-
-                    form.classList.add('was-validated')
-                }, false)
-            })
-        })()
-    </script>
