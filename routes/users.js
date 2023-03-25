@@ -5,14 +5,15 @@ const User = require('../models/user');
 const passport = require('passport');
 const users = require('../controllers/users');
 
-router.get('/register', users.renderRegister)
+router.route('/register')
+    .get(users.renderRegister)
+    .post(catchAsync(users.Register))
 
-router.post('/register', catchAsync(users.Register));
+router.route('/login')
+    .get(users.renderLogin)
+    .post(passport.authenticate('local',{ failureFlash: true, failureRedirect: '/login'}),users.login)
 
-router.get('/login', users.renderLogin);
-
-router.post('/login', passport.authenticate('local',{ failureFlash: true, failureRedirect: '/login'}),users.login);
-
-router.get('/logout', users.logout);
+router.route('/logout')
+    .get(users.logout)
 
 module.exports = router;

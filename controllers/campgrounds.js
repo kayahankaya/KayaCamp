@@ -33,11 +33,11 @@ module.exports.showCampground = async (req, res,) => {
 }
 
 module.exports.renderEditForm = async (req, res) => {
-    const {id} = req.params;
+    const { id } = req.params;
     const campground = await Campground.findById(id)
-    if(!campground){
-        req.flash('error','Cannot find that campground!')
-        res.redirect('/campgrounds');
+    if (!campground) {
+        req.flash('error', 'Cannot find that campground!');
+        return res.redirect('/campgrounds');
     }
     res.render('campgrounds/edit', { campground });
 }
@@ -49,7 +49,7 @@ module.exports.updateCampground = async (req, res) => {
     res.redirect(`/campgrounds/${campground._id}`)
 }
 
-module.exports.deleteCampground = async (req, res) => {
+module.exports.renderDeleteForm = async (req, res) => {
     const { id } = req.params;
     await Campground.findByIdAndDelete(id);
     req.flash('success', 'Successfully deleted campground!');
