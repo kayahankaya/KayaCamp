@@ -3,6 +3,8 @@ const {cloudinary} = require('../cloudinary');
 const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
 const mapBoxToken = process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
+const paginate = require('paginate-info');
+
 module.exports.index = async (req, res) => {
     const campgrounds = await Campground.find({});
     res.render('campgrounds/index', { campgrounds })
@@ -41,6 +43,9 @@ module.exports.showCampground = async (req, res,) => {
     }
     res.render('campgrounds/show', { campground });
 }
+
+
+
 
 module.exports.renderEditForm = async (req, res) => {
     const { id } = req.params;

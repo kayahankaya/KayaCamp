@@ -13,7 +13,7 @@ const methodOverride = require('method-override');
 const passport = require('passport');
 const LocalStrategy  = require('passport-local');
 const User = require('./models/user')
-
+const paginate = require('express-paginate');
 const userRoutes = require('./routes/users');
 const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes= require('./routes/reviews');
