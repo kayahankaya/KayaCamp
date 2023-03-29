@@ -13,7 +13,6 @@ module.exports.isLoggedIn = (req, res, next) => {
     next();
 }
 
-
 module.exports.validateCampground = (req, res, next) => {
     const { error } = campgroundSchema.validate(req.body);
     console.log('kaya')
@@ -25,7 +24,6 @@ module.exports.validateCampground = (req, res, next) => {
         next();
     }
 }
-
 
 module.exports.isAuthor = async (req, res, next) => {
     const { id } = req.params;
