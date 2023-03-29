@@ -1,11 +1,12 @@
 mapboxgl.accessToken = mapToken;
 const map = new mapboxgl.Map({
-    container: 'map',
-
+    container: 'cluster-map',
     style: 'mapbox://styles/mapbox/light-v11',
     center: [-103.5917, 40.6699],
     zoom: 3
 });
+
+map.addControl(new mapboxgl.NavigationControl());
 
 map.on('load', () => {
 
@@ -109,16 +110,4 @@ map.on('load', () => {
     map.on('mouseleave', 'clusters', () => {
         map.getCanvas().style.cursor = '';
     });
-});
-
-const pageLinks = document.querySelectorAll('.pagination a');
-const paginate = require('express-paginate');
-
-pageLinks.forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    const url = new URL(window.location.href);
-    url.searchParams.set('page', link.getAttribute('href').split('=')[1]);
-    window.location.href = url.href;
-  });
 });

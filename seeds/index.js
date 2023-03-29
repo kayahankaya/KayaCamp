@@ -19,6 +19,26 @@ db.once("open", () => {
 
 const sample = (array) => array[Math.floor(Math.random() * array.length)]
 
+campimgs = [
+  {
+    url: 'https://res.cloudinary.com/dotw5npsb/image/upload/v1680080728/YelpCamp/jljfkc3ysaulkkra7oq0.jpg',
+    filename: 'YelpCamp/jljfkc3ysaulkkra7oq0',
+  },
+  {
+    url: 'https://res.cloudinary.com/dotw5npsb/image/upload/v1680080729/YelpCamp/jdzmk53vu9cachgumle2.jpg',
+    filename: 'YelpCamp/jdzmk53vu9cachgumle2',
+  },
+  {
+    url: 'https://res.cloudinary.com/dotw5npsb/image/upload/v1680080729/YelpCamp/mkrifibdbkbc49boiuqh.jpg',
+    filename: 'YelpCamp/mkrifibdbkbc49boiuqh',
+  },
+  {
+    url: 'https://res.cloudinary.com/dotw5npsb/image/upload/v1680080730/YelpCamp/svl2fzkf8khzg8r1sgkq.jpg',
+    filename: 'YelpCamp/svl2fzkf8khzg8r1sgkq',
+  }
+
+]
+
 const seedDB = async () => {
     await Campground.deleteMany({});
     for (let i = 0; i < 600; i++) {
@@ -37,20 +57,7 @@ const seedDB = async () => {
                 cities[random1000].latitude
               ]
             },
-            images : [
-                {
-                  url: 'https://res.cloudinary.com/dotw5npsb/image/upload/v1679851618/YelpCamp/lfrkoiaoryfpkjfw79ni.jpg',
-                  filename: 'YelpCamp/lfrkoiaoryfpkjfw79ni',
-                },
-                {
-                  url: 'https://res.cloudinary.com/dotw5npsb/image/upload/v1679851619/YelpCamp/up2ynh9dgdmnw66qwbva.jpg',
-                  filename: 'YelpCamp/up2ynh9dgdmnw66qwbva',
-                },
-                {
-                  url: 'https://res.cloudinary.com/dotw5npsb/image/upload/v1679851620/YelpCamp/bpykgx8pndzkhoccmwjm.jpg',
-                  filename: 'YelpCamp/bpykgx8pndzkhoccmwjm',
-                }
-              ]
+            images : campimgs[(random1000%4)]
         });
         await camp.save();
     }

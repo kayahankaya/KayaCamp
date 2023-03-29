@@ -13,10 +13,10 @@ const methodOverride = require('method-override');
 const passport = require('passport');
 const LocalStrategy  = require('passport-local');
 const User = require('./models/user')
-const paginate = require('express-paginate');
 const userRoutes = require('./routes/users');
 const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes= require('./routes/reviews');
+const mongoSanitize = require('express-mongo-sanitize');
 
 mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp', {
     //useCreateIndex: true,
@@ -39,6 +39,9 @@ app.set('views', path.join(__dirname, 'views'))
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')))
+app.use(mongoSanitize({
+    replaceWith: '_'
+}))
 
 const sessionConfig = {
     secret: 'thisshouldbeabettersecret',
